@@ -14,7 +14,53 @@
 
 #include "tbitfield.h"
 
+
+
 int main()
+{
+    TBitField a(10);
+    cout << "a(10): " << a << endl;
+
+    a.SetBit(0); a.SetBit(3); a.SetBit(5);
+    cout << "Set(0,3,5): " << a << endl;
+    a.ClrBit(5);
+    cout << "Clr(5): " << a << endl;
+    cout << "Get(0,3,5): " << a.GetBit(0) << a.GetBit(3) << a.GetBit(5) << endl;
+
+    TBitField b(a);
+    b.ClrBit(0);
+    cout << "b: " << b << " | a: " << a << endl;
+
+    TBitField c(4);
+    c = a;
+    cout << "c: " << c << endl;
+
+    const int B = 8 * sizeof(TELEM);
+    TBitField e(B + 2);
+    e.SetBit(B - 1); e.SetBit(B);
+    cout << "e: " << e << endl;
+
+    // Проверка ввода
+    TBitField d(10);
+    cout << "Enter 10 bits (0/1): ";
+    cin >> d;
+    cout << "d: " << d << endl;
+    cout << "GetBit(0)=" << d.GetBit(0)
+        << " GetBit(9)=" << d.GetBit(9) << endl;
+
+    try { a.SetBit(-1); }
+    catch (...) { cout << "SetBit(-1) OK\n"; }
+    try { a.ClrBit(10); }
+    catch (...) { cout << "ClrBit(10) OK\n"; }
+    try { TBitField bad(0); }
+    catch (...) { cout << "TBitField(0) OK\n"; }
+    return 0;
+}
+
+
+
+
+/*int main()
 {
   int n, m, k, count;
 
@@ -50,6 +96,7 @@ int main()
   cout << endl;
   cout << "В первых " << n << " числах " << count << " простых" << endl;
 }
+*/
 #else
 
 #include "tset.h"
