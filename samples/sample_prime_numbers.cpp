@@ -16,7 +16,7 @@
 
 
 
-int main()
+/*int main()
 {
     TBitField a(10);
     cout << "a(10): " << a << endl;
@@ -55,12 +55,12 @@ int main()
     try { TBitField bad(0); }
     catch (...) { cout << "TBitField(0) OK\n"; }
     return 0;
-}
+}*/
 
 
 
 
-/*int main()
+int main()
 {
   int n, m, k, count;
 
@@ -96,7 +96,7 @@ int main()
   cout << endl;
   cout << "В первых " << n << " числах " << count << " простых" << endl;
 }
-*/
+
 #else
 
 #include "tset.h"

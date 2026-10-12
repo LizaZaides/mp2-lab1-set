@@ -55,7 +55,7 @@ TELEM TBitField::GetMemMask(const int n) const // битовая маска дл
 
 int TBitField::GetLength(void) const // получить длину (к-во битов)
 {
-  return FAKE_INT;
+  return BitLen;
 }
 
 void TBitField::SetBit(const int n) // установить бит
@@ -76,6 +76,7 @@ void TBitField::ClrBit(const int n) // очистить бит
 
 int TBitField::GetBit(const int n) const // получить значение бита
 {
+    if (n < 0 || n >= BitLen) throw ("неверное значение");
     int id = GetMemIndex(n);
     TELEM mask = GetMemMask(n);
     int res = pMem[id];
@@ -185,7 +186,7 @@ istream &operator>>(istream &istr, TBitField &bf) // ввод
 
 ostream &operator<<(ostream &ostr, const TBitField &bf) // вывод
 {
-    for (int i = 0; i < bf.BitLen; i++) {
+    for (int i = bf.BitLen - 1; i>=0 ; i--) {
         ostr << bf.GetBit(i);
     }
     return ostr;
